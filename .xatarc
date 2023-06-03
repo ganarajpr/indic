@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Ganaraj-s-workspace-fe7h11.eu-west-1.xata.sh/db/smrthi",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}
