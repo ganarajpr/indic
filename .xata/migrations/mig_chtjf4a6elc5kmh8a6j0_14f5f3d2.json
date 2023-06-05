@@ -1,0 +1,16 @@
+{
+  "id": "mig_chtjf4a6elc5kmh8a6j0",
+  "parentID": "mig_chtjf4a6elc5kmh8a6i0",
+  "checksum": "1:14f5f3d28db630a885eabfcccdeb968e8c996e62b5f5f8bdd611cf581ac70418",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "sequence",
+          "type": "int"
+        },
+        "table": "lines"
+      }
+    }
+  ]
+}

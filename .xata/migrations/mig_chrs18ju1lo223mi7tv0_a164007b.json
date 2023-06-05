@@ -1,0 +1,18 @@
+{
+  "id": "mig_chrs18ju1lo223mi7tv0",
+  "parentID": "mig_chrs15aqsbcn5por00p0",
+  "checksum": "1:a164007b6ad9ad1465a9eb09ee980164b7bd78390a70dd0506075ca4fd74b497",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "bookContext",
+          "type": "string",
+          "notNull": true,
+          "defaultValue": "\"\""
+        },
+        "table": "verses"
+      }
+    }
+  ]
+}

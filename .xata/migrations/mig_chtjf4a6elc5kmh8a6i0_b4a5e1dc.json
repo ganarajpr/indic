@@ -1,0 +1,16 @@
+{
+  "id": "mig_chtjf4a6elc5kmh8a6i0",
+  "parentID": "mig_chtjf426elc5kmh8a6h0",
+  "checksum": "1:b4a5e1dc32fda65f474a87f40f79bb7b7b6760a62e7d42d15a4ed1a32024a55e",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "createdAt",
+          "type": "string"
+        },
+        "table": "lines"
+      }
+    }
+  ]
+}

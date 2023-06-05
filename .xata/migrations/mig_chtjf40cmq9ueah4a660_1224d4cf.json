@@ -1,0 +1,16 @@
+{
+  "id": "mig_chtjf40cmq9ueah4a660",
+  "parentID": "mig_chtjf426elc5kmh8a6g0",
+  "checksum": "1:1224d4cf5daf9c63700443e76693032a20b3dbe3b7477ce1177a8789d8e1c48b",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "bookContext",
+          "type": "float"
+        },
+        "table": "lines"
+      }
+    }
+  ]
+}

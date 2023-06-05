@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@indic-transliteration/sanscript": "^1.2.8",
     "@next-auth/xata-adapter": "^0.2.2",
     "@types/node": "20.2.5",
     "@types/react": "18.2.8",

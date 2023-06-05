@@ -1,0 +1,18 @@
+{
+  "id": "mig_chtrbjpro5asctsbfci0",
+  "parentID": "mig_chtjf4a6elc5kmh8a6j0",
+  "checksum": "1:28948c558149c265d74391cbb3663c1dcdab118ff53e687b70c7527c77e91240",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "engtext",
+          "type": "text",
+          "notNull": true,
+          "defaultValue": ""
+        },
+        "table": "lines"
+      }
+    }
+  ]
+}

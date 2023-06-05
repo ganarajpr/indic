@@ -1,0 +1,11 @@
+{
+  "id": "mig_chrq40ju1lo223mi5lb0",
+  "checksum": "1:469d7a78297ec68a909f692c123e8ec4cf3ceed5cf75afea535a8a37af045248",
+  "operations": [
+    {
+      "addTable": {
+        "table": "verses"
+      }
+    }
+  ]
+}

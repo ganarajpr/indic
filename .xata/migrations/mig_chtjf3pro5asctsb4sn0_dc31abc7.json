@@ -1,0 +1,16 @@
+{
+  "id": "mig_chtjf3pro5asctsb4sn0",
+  "parentID": "mig_chtjf3ocmq9ueah4a650",
+  "checksum": "1:dc31abc7a6d889f02194af3d002cfed924cde4194767c4d8c1dbb90c5414bd19",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "script",
+          "type": "string"
+        },
+        "table": "lines"
+      }
+    }
+  ]
+}

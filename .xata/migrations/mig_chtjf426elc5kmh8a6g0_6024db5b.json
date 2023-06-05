@@ -1,0 +1,16 @@
+{
+  "id": "mig_chtjf426elc5kmh8a6g0",
+  "parentID": "mig_chtjf3pro5asctsb4sn0",
+  "checksum": "1:6024db5b35378af0de215c987e3caedf8512c173b03a37ce137e4df1730a8975",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "book",
+          "type": "string"
+        },
+        "table": "lines"
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "mig_chrs0u2qsbcn5poqvsg0",
+  "parentID": "mig_chrq40ju1lo223mi5lb0",
+  "checksum": "1:a9abab19829fd2c059acf33e2163977c7bb19a2bcbd1eeccbc287dba3f328737",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "text",
+          "type": "text",
+          "notNull": true,
+          "defaultValue": "\"\""
+        },
+        "table": "verses"
+      }
+    }
+  ]
+}

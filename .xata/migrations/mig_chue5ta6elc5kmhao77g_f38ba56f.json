@@ -1,0 +1,17 @@
+{
+  "id": "mig_chue5ta6elc5kmhao77g",
+  "parentID": "mig_chue4ci6elc5kmhao76g",
+  "checksum": "1:f38ba56f0585a1216c7d196f905c206da24a9c240fbef2e3b0581ab7dd269577",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "bookContext",
+          "type": "string",
+          "defaultValue": ""
+        },
+        "table": "lines"
+      }
+    }
+  ]
+}
