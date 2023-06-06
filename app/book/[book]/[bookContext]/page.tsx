@@ -13,7 +13,6 @@ const BookPage = async ({ params }: { params: { book: string; bookContext: strin
 
 const getData = async (book: string, bookContext: string) => {
     const record: LinesRecord | null = await xata.db.lines.filter({ book, bookContext }).getFirst();
-    console.log(record);
     return record;
 }
 
