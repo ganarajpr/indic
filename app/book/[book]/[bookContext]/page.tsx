@@ -2,7 +2,7 @@ import { getXataClient, LinesRecord } from "@/src/xata"
 import BookComponent from "./BookComponent";
 const xata = getXataClient();
 
-const BookPage = async ({ params }: { params: { book: string; bookContext: string; } }) => {
+const Page = async ({ params }: { params: { book: string; bookContext: string; } }) => {
     const data: LinesRecord | null = await getData(params.book, params.bookContext);
     return (
       <div className="flex flex-col items-center shadow-md rounded p-6 m-6">
