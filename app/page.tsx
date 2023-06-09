@@ -32,7 +32,7 @@ const getData = async () => {
   });
   const books = bookSummary.summaries?.map(item => item.book);
   const grouped = _.groupBy(books, (book) => {
-      book = latinize(Sanscript.t(book, 'hk', 'iast'));
+      book = latinize(Sanscript.t(book || '', 'hk', 'iast'));
       return book.toLowerCase().charCodeAt(0);
   });
   return grouped;

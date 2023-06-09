@@ -1,12 +1,18 @@
 import { getXataClient, LinesRecord } from "@/src/xata"
-import BookComponent from "./BookComponent";
+import Verse from "@/components/Verse";
+import VerseHeader from "@/components/VerseHeader";
+import _ from 'lodash';
+
 const xata = getXataClient();
 
-const Page = async ({ params }: { params: { book: string; bookContext: string; } }) => {
-    const data: LinesRecord | null = await getData(params.book, params.bookContext);
+const VersePage = async ({ params }: { params: { book: string; bookContext: string; } }) => {
+  const verse: LinesRecord | null = await getData(decodeURI(params.book), decodeURI(params.bookContext));
+  const chapter = _.initial(verse?.bookContext?.split('.')).join('.');
+  const link = `/book/${verse?.book}/chapter/${chapter}`;
     return (
       <div className="flex flex-col items-center shadow-md rounded p-6 m-6">
-        {data && <BookComponent data={data} />}
+        {verse && <VerseHeader book={verse?.book} bookContext={verse?.bookContext} link={link}/>}
+        {verse && <Verse verse={verse} />}
       </div>
     );
 };
@@ -16,4 +22,4 @@ const getData = async (book: string, bookContext: string) => {
     return record;
 }
 
-export default BookPage;
+export default VersePage;
