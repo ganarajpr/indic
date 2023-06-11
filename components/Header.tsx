@@ -10,7 +10,7 @@ const Header = () => {
   };
 
   return (
-    <header className='flex items-center justify-between py-2 border-b-2 border-teal-500'>
+    <header className='flex items-center justify-between py-2 border shadow-sm shadow-fuchsia-950'>
       <div className='flex justify-center flex-1'>
         <Link href='/'>
           <div className='mx-auto'>
@@ -26,8 +26,8 @@ const Header = () => {
       </div>
 
       <button
-        className='bg-transparent hover:bg-teal-500 text-teal-700 font-semibold hover:rounded-full rounded-full 
-            hover:text-white py-2 px-3 border border-teal-500 hover:border-transparent mr-2'
+        className='bg-transparent hover:bg-fuchsia-950 text-fuchsia-950 font-semibold hover:rounded-full rounded-full 
+            hover:text-white py-2 px-3 border border-fuchsia-950 hover:border-transparent mr-2'
         onClick={handleUserIconClick}
       >
         <svg

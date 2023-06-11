@@ -3,8 +3,8 @@ import VerseHeader from '@/components/VerseHeader';
 import { getXataClient } from '@/src/xata';
 import Sanscript from '@indic-transliteration/sanscript';
 import Link from 'next/link';
-import latinize from 'latinize';
 import SearchBar from '@/components/SearchBar';
+import { convertForDisplay } from '@/utils/text';
 
 const xata = getXataClient();
 
@@ -30,7 +30,7 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
       </div>
       <div className='divide-y-4 divide-slate-400/25'>
         {results?.map((verse) => {
-          const book = latinize(Sanscript.t(verse?.book || '', 'hk', 'iast'));
+          const book = convertForDisplay(verse?.book || '');
           // @ts-ignore
           let engtext = verse.xata.highlight.engtext?.[0];
           // @ts-ignore
@@ -43,7 +43,8 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
             <>
               <Link
                 href={`/book/${verse.book}/${verse.bookContext}`}
-                className='p-4 ml-5 hover:bg-teal-500 group w-full rounded-md grid grid-flow-col items-center'
+                      className='p-4 ml-5 hover:bg-fuchsia-950 
+                group w-full rounded-md grid grid-flow-col items-center'
               >
                 <div className='flex flex-row items-center columns-2 p-2'>
                   <div className='flex flex-col h-full justify-center basis-1/4'>

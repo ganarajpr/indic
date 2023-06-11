@@ -2,6 +2,8 @@ import SearchBar from '@/components/SearchBar';
 import { getXataClient } from '@/src/xata';
 import _ from 'lodash';
 import Link from 'next/link';
+import { convertForDisplay } from '@/utils/text';
+import PageHeading from '@/components/PageHeading';
 const xata = getXataClient();
 
 type BookPageProps = {
@@ -13,12 +15,14 @@ type BookPageParams = {
   chapterNo: string;
 };
 
-const getBookContextList = (bookContexts, bookName) => {
+const getBookChapterList = (bookContexts, bookName) => {
   if (bookContexts?.length) {
     return _.map(bookContexts, (spl) => {
       return (
         <Link href={`/book/${bookName}/chapter/${spl}`} key={spl}>
-          <div className='col-span-12 md:col-span-6 lg:col-span-3 shadow-md p-3 underline mb-2 cursor-pointer items-center justify-items-center hover:bg-teal-500 hover:text-gray-700'>
+              <div className='col-span-12 md:col-span-6 lg:col-span-3 
+            p-3 underline mb-2 cursor-pointer items-center rounded-md
+            justify-items-center hover:bg-fuchsia-950 hover:text-gray-300'>
             <div className='text-lg text-center'>Chapter {spl}</div>
           </div>
         </Link>
@@ -35,10 +39,15 @@ export default async function BookPage({ params }: BookPageProps) {
       <div
         className='z-10 w-full max-w-5xl items-center 
                 justify-between font-mono text-sm'
-      >
+          >
+              
               <SearchBar />
+              <PageHeading
+                    book={book}
+                    className='justify-self-center self-center w-full'
+                />
               <div className='grid grid-flow-row'>
-              {getBookContextList(chapters, book)}
+              {getBookChapterList(chapters, book)}
               </div>
         
       </div>

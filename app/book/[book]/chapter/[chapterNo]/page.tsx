@@ -1,3 +1,4 @@
+import PageHeading from '@/components/PageHeading';
 import Verse from '@/components/Verse';
 import VerseHeader from '@/components/VerseHeader';
 import { getXataClient, LinesRecord } from '@/src/xata';
@@ -26,18 +27,19 @@ const ChapterPage = async ({ params }: ChapterPageProps) => {
   );
   return (
     <div className='flex flex-col items-start rounded p-6 m-6 '>
-      <VerseHeader
+      <PageHeading
         book={chapter[0]?.book || ''}
         bookContext={chapterIndex || ''}
         link={`/book/${decodeURI(params.book)}`}
-        className='justify-self-center self-center'
+        className='justify-self-center self-center w-full'
       />
       {chapter?.map((verse) => {
         return (
           <>
             <Link
               href={`/book/${verse.book}/${verse.bookContext}`}
-              className='p-4 ml-5 hover:bg-teal-500 group w-full rounded-md flex flex-row items-center'
+              className='p-4 ml-5 hover:bg-fuchsia-950 
+              group w-full rounded-md flex flex-row items-center'
             >
               <VerseHeader
                 bookContext={verse?.bookContext || ''}

@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { convertForDisplay } from '@/utils/text';
 
 type VerseHeaderProps = {
-  book?: string;
-  bookContext: string;
+  book: string;
+  bookContext?: string;
   link?: string;
   className?: string;
 };
@@ -12,22 +12,24 @@ type VerseHeaderProps = {
 const LinkWrapper = (link: string | undefined, content: React.JSX.Element) => {
     return link ? <Link className='flex flex-col w-full' href={link}>{content}</Link> : content;
 };
-const VerseHeader = ({
-  book = '',
-  bookContext,
-  link,
-  className = '',
+const PageHeading = ({
+    book,
+    bookContext,
+    link,
+    className = '',
 }: VerseHeaderProps) => {
-  const content = (
-      <div className={`hover:cursor-pointer group-hover:text-gray-300 text-gray-700 flex flex-row justify-center items-center ${className}`}>
+    const content = (
+        <h1 className={`${link ? 'hover: cursor-pointer' : ''} flex flex-row justify-center rounded-md 
+      capitalize mb-2 p-3 text-2xl
+      bg-fuchsia-950 text-gray-300 items-center ${className}`}>
       <span className='text-3xl  mb-2 pr-2 capitalize'>
         {book ? convertForDisplay(book) : ''}
       </span>
-      <span className='text-xl h-full'>{bookContext}</span>
-    </div>
+          {bookContext && <span className='text-xl h-full'>{bookContext}</span>}
+    </h1>
   );
 
   return LinkWrapper(link, content);
 };
 
-export default VerseHeader;
+export default PageHeading;
