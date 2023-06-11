@@ -74,6 +74,7 @@ const tables = [
       { name: "sequence", type: "int" },
       { name: "engtext", type: "text", notNull: true, defaultValue: "" },
       { name: "bookContext", type: "string" },
+      { name: "L1", type: "int" },
     ],
   },
 ] as const;

@@ -10,7 +10,7 @@ const Verse = ({ verse, className = '' }: VerseProps ) => {
   const chapter = _.initial(verse?.bookContext?.split('.')).join('.');
 
   return (
-    <div className={`text-gray-400 group-hover:text-gray-900 text-4xl mt-8 ${className}`}>
+    <div className={`text-gray-400 group-hover:text-gray-900 text-4xl ${className}`}>
         {verse?.text?.split('\n').map((line) => {
           return <div key={line}>{line}</div>;
         })}

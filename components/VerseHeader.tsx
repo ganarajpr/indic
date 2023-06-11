@@ -11,6 +11,7 @@ type VerseHeaderProps = {
 };
 
 const LinkWrapper = (link: string | undefined, content: React.JSX.Element) => {
+    console.log(link);
     return link ? <Link className='flex flex-col w-full' href={link}>{content}</Link> : content;
 };
 const VerseHeader = ({

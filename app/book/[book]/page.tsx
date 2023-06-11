@@ -1,102 +1,64 @@
-import { getXataClient, LinesRecord } from '@/src/xata';
+import SearchBar from '@/components/SearchBar';
+import { getXataClient } from '@/src/xata';
 import _ from 'lodash';
-import Head from 'next/head';
 import Link from 'next/link';
-import Sanscript from '@indic-transliteration/sanscript';
 const xata = getXataClient();
 
-type BookSummary = {
+type BookPageProps = {
+  params: BookPageParams;
+};
+
+type BookPageParams = {
   book: string;
+  chapterNo: string;
 };
 
-type BookSummaryList = {
-  summaries: BookSummary[];
-};
-
-const getBookForKey = (books, key) => {
-    return books[key].map((book) => {
-        return (
-            <Link href={`/book/${book}`} key={book}>
-                <div
-                    className="col-span-12 shadow-md p-3 border cursor-pointer hover:bg-pink-900 hover:text-white"
-                    key={book}
-                >
-                    <p className="text-lg">
-                        {Sanscript.t(book, "hk", "devanagari")} /{" "}
-                        {Sanscript.t(book, "hk", "iast")}
-                    </p>
-                </div>
-            </Link>
-        );
+const getBookContextList = (bookContexts, bookName) => {
+  if (bookContexts?.length) {
+    return _.map(bookContexts, (spl) => {
+      return (
+        <Link href={`/book/${bookName}/chapter/${spl}`} key={spl}>
+          <div className='col-span-12 md:col-span-6 lg:col-span-3 shadow-md p-3 underline mb-2 cursor-pointer items-center justify-items-center hover:bg-teal-500 hover:text-gray-700'>
+            <div className='text-lg text-center'>Chapter {spl}</div>
+          </div>
+        </Link>
+      );
     });
+  }
 };
 
-const getBookList = (books) => {
-    const keys = Object.keys(books);
-    return keys.map((key) => {
-        return (<>
-            <div
-                className="col-span-12 shadow-md p-3 border cursor-pointer bg-pink-900 text-white my-4"
-                >{String.fromCharCode(+key).toUpperCase()}</div>
-            {getBookForKey(books, key)}
-        </>);
+export default async function BookPage({ params }: BookPageProps) {
+  const book = decodeURI(params.book);
+  const chapters = await getChapterData(book);
+  return (
+    <main className='flex flex-col items-center'>
+      <div
+        className='z-10 w-full max-w-5xl items-center 
+                justify-between font-mono text-sm'
+      >
+              <SearchBar />
+              <div className='grid grid-flow-row'>
+              {getBookContextList(chapters, book)}
+              </div>
         
-        });
-};
-const BookPage = async () => {
-    const books = await getData();
-    return (
-      <>
-            <Head>
-                <title>Smrthi - Home</title>
-                <meta
-                    name="description"
-                    content={"Books of Ancient Sanskrit/Indic Literature"}
-                />
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content={`https://www.smrthi.com/`} />
-                <meta property="og:title" content={`Smrithi - Home`} />
-                <meta
-                    property="og:description"
-                    content={"Books of Ancient Sanskrit/Indic Literature"}
-                />
-                <meta
-                    property="og:image"
-                    content={`https://www.smrthi.com/logo.jpg`}
-                />
-                <meta property="twitter:card" content="summary" />
-                <meta
-                    property="twitter:url"
-                    content={`https://www.smrthi.com/`}
-                />
-                <meta property="twitter:title" content={`Smrithi - Home`} />
-                <meta
-                    property="twitter:description"
-                    content={"Smrithi - Home"}
-                />
-                <meta
-                    property="twitter:image"
-                    content={`https://www.smrthi.com/logo.jpg`}
-                />
-            </Head>
-            <div className='flex flex-col items-center shadow-md rounded p-6 m-6'>
-                {getBookList(books)}
-            </div>
-      </>
-      
+      </div>
+    </main>
   );
-};
+}
 
-const getData = async () => {
-    const bookSummary  = await xata.db.lines.summarize({
-        columns: ['book'],
-        summaries: {},
+const getChapterData = async (book: string) => {
+  const bookChapterSummary = await xata.db.lines
+    .filter('book', book)
+    .summarize({
+      columns: ['L1'],
+      summaries: {},
+      pagination: {
+        size: 1000,
+      },
     });
-    const books = bookSummary.summaries?.map(item => item.book);
-    const grouped = _.groupBy(books, (book) => {
-        return book.toLowerCase().charCodeAt(0);
-    });
-  return grouped;
+  return bookChapterSummary.summaries
+    .map((item) => {
+      return item?.L1 ? +item.L1 : 1;
+    })
+    .sort((a, b) => a-b);
 };
-
-export default BookPage;
