@@ -1,18 +1,13 @@
 import React from 'react';
-import { LinesRecord } from '@/src/xata';
-import latinize from 'latinize';
-import Sanscript from '@indic-transliteration/sanscript';
 import _ from 'lodash';
-import Link from 'next/link';
 
-type VerseProps = { verse: LinesRecord | null, className?: string };
-const Verse = ({ verse, className = '' }: VerseProps ) => {
+const Verse = ({ verse, text, className = '' }) => {
   const chapter = _.initial(verse?.bookContext?.split('.')).join('.');
-
+  const finalText = text ? text : verse?.text;
   return (
     <div className={`text-gray-400 group-hover:text-gray-900 text-4xl ${className}`}>
-        {verse?.text?.split('\n').map((line) => {
-          return <div key={line}>{line}</div>;
+        {finalText.split('\n').map((line) => {
+          return <div className='line ' key={line} dangerouslySetInnerHTML={{ __html: line }}></div>;
         })}
       </div>
   );

@@ -1,9 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import latinize from 'latinize';
 import Sanscript from '@indic-transliteration/sanscript';
 const GroupedBooks = ({ books }) => {
-    console.log(books);
   return (
     <div className="p-6">
       {Object.entries(books).map(([letter, items]) => (

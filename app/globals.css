@@ -25,3 +25,8 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.line em {
+  text-decoration: underline;
+  font-weight: 100;
+}

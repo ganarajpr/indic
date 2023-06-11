@@ -11,11 +11,6 @@ type ChapterResponse = {
   text: string;
 };
 
-type ChapterData = {
-  chapter: ChapterResponse[] | null;
-  chapterIndex: string;
-};
-
 type ChapterPageProps = {
   params: ChapterPageParams;
 };
@@ -25,7 +20,7 @@ type ChapterPageParams = {
   chapterNo: string;
 };
 const ChapterPage = async ({ params }: ChapterPageProps) => {
-  const { chapter, chapterIndex }: ChapterData = await getChapterData(
+  const { chapter, chapterIndex } = await getChapterData(
     decodeURI(params.book),
     decodeURI(params.chapterNo)
   );
@@ -33,7 +28,7 @@ const ChapterPage = async ({ params }: ChapterPageProps) => {
     <div className='flex flex-col items-start rounded p-6 m-6 '>
       <VerseHeader
         book={chapter[0]?.book || ''}
-        bookContext={chapterIndex}
+        bookContext={chapterIndex || ''}
         link={`/book/${decodeURI(params.book)}`}
         className='justify-self-center self-center'
       />
@@ -74,7 +69,6 @@ const getChapterData = async (book: string, chapterNo: string) => {
     .select(['book', 'text', 'bookContext'])
     .getAll({
       consistency: "eventual",
-      // pagination:{size: 1000}
     });
   return { chapterIndex: chapterLevels, chapter: records };
 };

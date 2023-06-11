@@ -1,16 +1,17 @@
 'use client';
 import React, { useState } from "react";
+import { useRouter } from 'next/navigation';
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
-
+  const router = useRouter(); 
   const handleSearchChange = (event:any) => {
     setSearchTerm(event.target.value);
   };
 
   const handleSearchSubmit = (event:any) => {
     event.preventDefault();
-    console.log(searchTerm); // Here you can implement your search logic
+    router.push(`/search?q=${searchTerm}`);
   };
 
   return (
