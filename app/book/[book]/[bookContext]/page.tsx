@@ -1,4 +1,4 @@
-import { getXataClient, LinesRecord } from '@/src/xata';
+import { getXataClient } from '@/src/xata';
 import Verse from '@/components/Verse';
 import _ from 'lodash';
 import PageHeading from '@/components/PageHeading';
@@ -35,7 +35,9 @@ const VersePage = async ({
           className='justify-self-center self-center w-full'
         />
       )}
-      <NavigationButtons book={book} prevContext={prevVerse?.bookContext} nextContext={nextVerse?.bookContext} />
+      <NavigationButtons
+        prevLink={prevVerse?.bookContext && `/book/${book}/${prevVerse.bookContext}`}
+        nextLink={nextVerse?.bookContext && `/book/${book}/${nextVerse.bookContext}`} />
       {verse && <Verse verse={verse} className='mt-4' />}
     </div>
   );

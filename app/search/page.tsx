@@ -73,7 +73,7 @@ const getSearchData = async (query: string, offset: string = '0') => {
     fuzziness: 2,
     prefix: 'phrase',
     page: {
-      size: 20,
+      size: 200,
       offset: +offset,
     },
   });
