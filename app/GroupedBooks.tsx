@@ -1,7 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
 import Sanscript from '@indic-transliteration/sanscript';
-const GroupedBooks = ({ books }) => {
+import { type } from 'os';
+
+type BookMap = {
+  [key: string]: (string | null | undefined)[];
+};
+
+type GroupedBooksProp = {
+  books: BookMap
+}
+const GroupedBooks = ({ books }: GroupedBooksProp) => {
   return (
     <div className="p-6">
       {Object.entries(books).map(([letter, items]) => (
@@ -14,8 +23,8 @@ const GroupedBooks = ({ books }) => {
                     <Link href={`/book/${item}`}
                   className="text-gray-700 hover:text-gray-500 
                         capitalize text-xl">
-                        {Sanscript.t(item, 'hk', 'devanagari')}
-                        {" ("+Sanscript.t(item, 'hk', 'iast')+")"}  
+                        {Sanscript.t(item || '', 'hk', 'devanagari')}
+                        {" ("+Sanscript.t(item || '', 'hk', 'iast')+")"}  
                         
                     </Link>
               </li>
