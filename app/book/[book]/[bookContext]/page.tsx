@@ -4,6 +4,8 @@ import _ from 'lodash';
 import PageHeading from '@/components/PageHeading';
 import NavigationButtons from '@/components/NavigationButtons';
 import { lt, gt } from "@xata.io/client";
+import { Metadata, ResolvingMetadata } from 'next'
+import { convertForDisplay } from '@/utils/text';
 
 const xata = getXataClient();
 
@@ -67,6 +69,39 @@ const getPrevContext = async (book: string, sequence: number) => {
   .sort("sequence", "desc")
   .select(["book", "bookContext"])
   .getFirst(): null;
+}
+
+type Props = {
+  params: { book: string, bookContext: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+ 
+export async function generateMetadata(
+  { params, searchParams }: Props
+): Promise<Metadata> {
+  const book = decodeURI(params.book);
+  const bookContext = decodeURI(params.bookContext);
+  const verse = await getVerseData(
+    book,
+    bookContext
+  );
+ 
+  return {
+    title: `${convertForDisplay(book)} ${bookContext}`,
+    description: 'Indic Sanskrit Literature',
+    twitter: {
+      card: 'summary_large_image',
+      title: `${convertForDisplay(book)} ${bookContext}`,
+      description: `Verses of ${convertForDisplay(book)}`,
+      images: [],
+    },
+    openGraph: {
+      title: `${convertForDisplay(book)} ${bookContext}`,
+      description: `Verses of ${convertForDisplay(book)} in Sanskrit`,
+      url: `/book/${book}/${bookContext}`,
+      images: []
+    }
+  }
 }
 
 export default VersePage;
