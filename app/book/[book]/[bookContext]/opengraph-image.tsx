@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/server';
-import { getVerseData, VerseProps } from './page';
+import { getVerseData, VerseProps } from './verseData';
 export const runtime = 'edge';
 import PageHeading from '@/components/PageHeading';
 import Verse from '@/components/Verse';

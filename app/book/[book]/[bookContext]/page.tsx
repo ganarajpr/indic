@@ -4,15 +4,11 @@ import _ from 'lodash';
 import PageHeading from '@/components/PageHeading';
 import NavigationButtons from '@/components/NavigationButtons';
 import { lt, gt } from "@xata.io/client";
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata } from 'next'
 import { convertForDisplay } from '@/utils/text';
-
+import { getVerseData, VerseProps } from './verseData';
 const xata = getXataClient();
-export type VerseParams = { book: string; bookContext: string }
 
-export type VerseProps = {
-  params: VerseParams
-}
 
 
 const VersePage = async ({
@@ -49,13 +45,7 @@ const VersePage = async ({
   );
 };
 
-export const getVerseData = async (book: string, bookContext: string) => {
-  const record = await xata.db.lines
-    .filter({ book, bookContext })
-    .select(['book', 'text', 'bookContext', 'sequence'])
-    .getFirst();
-  return record;
-};
+
 
 const getNextContext = async (book: string, sequence: number) => {
   return sequence ? xata.db.lines
