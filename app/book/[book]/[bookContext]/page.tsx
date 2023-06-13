@@ -8,12 +8,16 @@ import { Metadata, ResolvingMetadata } from 'next'
 import { convertForDisplay } from '@/utils/text';
 
 const xata = getXataClient();
+export type VerseParams = { book: string; bookContext: string }
+
+export type VerseProps = {
+  params: VerseParams
+}
+
 
 const VersePage = async ({
   params,
-}: {
-  params: { book: string; bookContext: string };
-  }) => {
+}: VerseProps) => {
   
   const book = decodeURI(params.book);
   const bookContext = decodeURI(params.bookContext);
@@ -45,7 +49,7 @@ const VersePage = async ({
   );
 };
 
-const getVerseData = async (book: string, bookContext: string) => {
+export const getVerseData = async (book: string, bookContext: string) => {
   const record = await xata.db.lines
     .filter({ book, bookContext })
     .select(['book', 'text', 'bookContext', 'sequence'])
@@ -92,14 +96,12 @@ export async function generateMetadata(
     twitter: {
       card: 'summary_large_image',
       title: `${convertForDisplay(book)} ${bookContext}`,
-      description: `Verses of ${convertForDisplay(book)}`,
-      images: [],
+      description: `Verses of ${convertForDisplay(book)}`
     },
     openGraph: {
       title: `${convertForDisplay(book)} ${bookContext}`,
       description: `Verses of ${convertForDisplay(book)} in Sanskrit`,
-      url: `/book/${book}/${bookContext}`,
-      images: []
+      url: `/book/${book}/${bookContext}`
     }
   }
 }
