@@ -1,8 +1,7 @@
-import { ImageResponse } from 'next/server';
+import { ImageResponse } from '@vercel/og';
 import { getVerseData, VerseProps } from './verseData';
-import PageHeading from '@/components/PageHeading';
-import Verse from '@/components/Verse';
-
+import ImagePageHeading from '@/components/ImagePageHeading';
+import ImageVerse from '@/components/ImageVerse';
 export const runtime = 'edge';
 export const alt = 'Verse of Sanskrit';
 export const size = {
@@ -18,15 +17,13 @@ export default async function Image({ params }: VerseProps) {
 
   return new ImageResponse(
     (
-        <div className='flex flex-col items-center shadow-md rounded p-6 m-6'>
-        {verse && (
-          <PageHeading
-            book={book || ''}
-            bookContext={bookContext || ''}
-            className='justify-self-center self-center w-full'
-          />
-        )}
-        {verse && <Verse verse={verse} className='mt-4' />}
+      <div tw='flex flex-col items-center p-6 m-6'>
+        {/* <ImagePageHeading
+          book={book || ''}
+          bookContext={bookContext || ''}
+          tw='self-center w-full'
+        /> */}
+        <ImageVerse verse={verse} tw='mt-4' />
       </div>
     ),
     {
