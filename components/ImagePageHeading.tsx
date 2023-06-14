@@ -14,8 +14,8 @@ const ImagePageHeading = ({
     tw = '',
 }: VerseHeaderProps) => {
     const content = (
-        <div tw={`flex flex-col justify-center rounded-md 
-      capitalize mb-1 p-2 text-gray-700 items-center ${tw}`}>
+        <div tw={`flex flex-col justify-center rounded-md bg-[#4a044e] 
+      capitalize mb-1 p-2 text-gray-300 items-center ${tw}`}>
       <span tw='text-3xl mb-2 pr-2 capitalize'>
         {book ? convertForDisplay(book) : ''}
       </span>
