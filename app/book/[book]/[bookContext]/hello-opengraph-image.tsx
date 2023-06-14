@@ -1,4 +1,4 @@
-import { ImageResponse } from 'next/server';
+import { ImageResponse } from '@vercel/og';
 import { getVerseData, VerseProps } from './verseData';
 import PageHeading from '@/components/PageHeading';
 import Verse from '@/components/Verse';
@@ -18,7 +18,7 @@ export default async function Image({ params }: VerseProps) {
 
   return new ImageResponse(
     (
-        <div className='flex flex-col items-center shadow-md rounded p-6 m-6'>
+      <div className='flex flex-col items-center shadow-md rounded p-6 m-6'>
         {verse && (
           <PageHeading
             book={book || ''}

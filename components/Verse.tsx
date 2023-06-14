@@ -7,7 +7,7 @@ const Verse = ({ verse, text = null, className = '' }) => {
   return (
     <div className={`text-gray-700 group-hover:text-gray-300 text-4xl ${className}`}>
         {finalText.split('\n').map((line) => {
-          return <div className='line' key={line} dangerouslySetInnerHTML={{ __html: line }}></div>;
+          return <div className='line break-all' key={line} dangerouslySetInnerHTML={{ __html: line }}></div>;
         })}
       </div>
   );
