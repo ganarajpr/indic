@@ -28,8 +28,8 @@ const ChapterPage = async ({ params }: ChapterPageProps) => {
     decodeURI(params.chapterNo)
   );
   const [prevVerse, nextVerse] = await Promise.all([
-    getPrevContext(book, chapter[0].sequence || 0),
-    getNextContext(book, chapter[chapter.length - 1].sequence || 0),
+    getPrevContext(book, chapter[0]?.sequence || 0),
+    getNextContext(book, chapter[chapter.length - 1]?.sequence || 0),
   ]);
   const prevChapter = getChapterContext(prevVerse?.bookContext);
   const nextChapter = getChapterContext(nextVerse?.bookContext);
@@ -42,7 +42,7 @@ const ChapterPage = async ({ params }: ChapterPageProps) => {
           link={`/book/${decodeURI(params.book)}`}
           className='justify-self-center self-center w-full'
         />
-        <select 
+        {/* <select 
           className="appearance-none bg-transparent border-none w-full text-fontColor 
         mr-3 py-1 px-2 leading-tight focus:outline-none focus:placeholder-transparent"
       >
@@ -50,7 +50,7 @@ const ChapterPage = async ({ params }: ChapterPageProps) => {
         <option value="option1">Option 1</option>
         <option value="option2">Option 2</option>
         <option value="option3">Option 3</option>
-      </select>
+      </select> */}
         {chapter?.map((verse) => {
           return (
             <>
@@ -91,7 +91,7 @@ const getChapterData = async (book: string, chapterNo: string) => {
     .select(['bookContext'])
     .getFirst();
 
-  const levels = record?.bookContext?.split('.');
+  const levels = record?.bookContext?.split('.').map(t => +t);
   const chapterLevels = levels?.slice(0, levels.length - 1).join('.');
   const records = await xata.db.lines
     .filter('book', book)

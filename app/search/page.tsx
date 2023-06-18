@@ -15,19 +15,26 @@ type SearchPageProps = {
 
 type SearchPageSearchParams = {
   q: string;
+  book: string;
   offset: string;
 };
 const SearchPage = async ({ searchParams }: SearchPageProps) => {
   const query = decodeURI(searchParams.q);
+  const book = searchParams.book ? decodeURI(searchParams.book) : '';
   const results = await getSearchData(
     query,
+    book,
     decodeURI(searchParams.offset) || '0'
   );
   return (
     <div className='grid grid-flow-row rounded p-6 m-6'>
       <SearchBar text={decodeURI(searchParams.q)} />
       <div className='text-lg text-gray-400 p-4 ml-4'>
-        Your search for {query} returned the following results.
+        Your search for <span className='italic text-gray-500'>{query} </span>
+        { 
+          book ? <><span>in </span><span className='capitalize text-gray-500'>{convertForDisplay(book)} </span></> : ''
+        }
+        {results?.length ? `returned the following ${results.length} results.` : 'returned NO results.'} 
       </div>
       <div className='divide-y-4 divide-slate-400/25'>
         {results?.map((verse) => {
@@ -69,9 +76,12 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
   );
 };
 
-const getSearchData = async (query: string, offset: string = '0') => {
+const getSearchData = async (query: string, book: string = '', offset: string = '0') => {
+  const myFilter = book !== '' ? { book } : undefined;
+  console.log('myFilter', myFilter);
   const records = await xata.db.lines.search(query, {
     fuzziness: 2,
+    filter: myFilter,
     prefix: 'phrase',
     page: {
       size: 200,

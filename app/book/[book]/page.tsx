@@ -2,7 +2,6 @@ import SearchBar from '@/components/SearchBar';
 import { getXataClient } from '@/src/xata';
 import _ from 'lodash';
 import Link from 'next/link';
-import { convertForDisplay } from '@/utils/text';
 import PageHeading from '@/components/PageHeading';
 const xata = getXataClient();
 

@@ -1,10 +1,11 @@
 'use client';
 import React, { useEffect, useState } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 
 const SearchBar = ({text = ''}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const router = useRouter();
+  const params = useParams();
   useEffect(() => {
     text && setSearchTerm(text);
   }, []);
@@ -14,8 +15,10 @@ const SearchBar = ({text = ''}) => {
 
   const handleSearchSubmit = (event:any) => {
     event.preventDefault();
+    const book = params?.book ? params.book : '';
+
     if (searchTerm) {
-      router.push(`/search?q=${searchTerm}`);
+      router.push(`/search?q=${searchTerm}${ book ? `&book=${book}` : '' }`);
     }
   };
 
