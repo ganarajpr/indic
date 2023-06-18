@@ -5,6 +5,7 @@ import Sanscript from '@indic-transliteration/sanscript';
 import Link from 'next/link';
 import SearchBar from '@/components/SearchBar';
 import { convertForDisplay } from '@/utils/text';
+import { Metadata } from 'next'
 
 const xata = getXataClient();
 
@@ -79,5 +80,19 @@ const getSearchData = async (query: string, offset: string = '0') => {
   });
   return records;
 };
+
+type Props = {
+  params: { book: string, bookContext: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata(
+  { params, searchParams }: Props
+): Promise<Metadata> {
+  return {
+    title: `Search results for ${searchParams.q}`,
+    description: 'Search on Indic Sanskrit Literature',
+  }
+}
 
 export default SearchPage;
