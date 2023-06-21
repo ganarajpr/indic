@@ -42,15 +42,6 @@ const ChapterPage = async ({ params }: ChapterPageProps) => {
           link={`/book/${decodeURI(params.book)}`}
           className='justify-self-center self-center w-full'
         />
-        {/* <select 
-          className="appearance-none bg-transparent border-none w-full text-fontColor 
-        mr-3 py-1 px-2 leading-tight focus:outline-none focus:placeholder-transparent"
-      >
-        <option value="">Please select</option>
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
-      </select> */}
         {chapter?.map((verse) => {
           return (
             <>
