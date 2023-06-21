@@ -1,4 +1,3 @@
-
 import { getXataClient } from '@/src/xata';
 import { extractSequence } from '@/utils/text';
 const xata = getXataClient();

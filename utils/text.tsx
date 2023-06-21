@@ -1,6 +1,5 @@
 import latinize from 'latinize';
 import Sanscript from '@indic-transliteration/sanscript';
-import _ from 'lodash';
 
 export const convertForDisplay = (text: string, from = 'hk', to = 'iast') => {
     return latinize(Sanscript.t(text, from, to));
@@ -15,7 +14,7 @@ export type Context = {
 }
 
 export const convertToBookContext = (context: Context) => {
-    const keys = _.keys(context);
+    const keys = Object.keys(context);
     let i: number =0;
     const ctx:number[] = [];
     while(i< keys.length) {
@@ -27,7 +26,7 @@ export const convertToBookContext = (context: Context) => {
 
 
 export const convertToQueryFormat = (context: Context, root: String) => {
-    const keys = _.keys(context);
+    const keys = Object.keys(context);
     const query = keys.reduce((prev, cur) => {
         prev[`${root}.${cur}`] = context[cur];
         return prev;
