@@ -6,16 +6,8 @@ import PageHeading from '@/components/PageHeading';
 import { Props } from '@/types/metadata';
 import { Metadata } from 'next';
 import { convertForDisplay } from '@/utils/text';
+import { BookPageProps } from '@/types/book';
 const xata = getXataClient();
-
-type BookPageProps = {
-  params: BookPageParams;
-};
-
-type BookPageParams = {
-  book: string;
-  chapterNo: string;
-};
 
 const getBookChapterList = (bookContexts, bookName) => {
   if (bookContexts?.length) {
@@ -80,7 +72,6 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   
   const book = decodeURI(params.book || '');
-  const chapterNo = decodeURI(params.chapterNo || '');
  
   return {
     title: `Chapters of ${convertForDisplay(book)}`,

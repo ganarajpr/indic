@@ -3,12 +3,12 @@ import PageHeading from '@/components/PageHeading';
 import Verse from '@/components/Verse';
 import VerseHeader from '@/components/VerseHeader';
 import { getXataClient } from '@/src/xata';
-import { startsWith, lt, gt } from '@xata.io/client';
+import { lt, gt } from '@xata.io/client';
 import Link from 'next/link';
 import { Props } from '@/types/metadata';
 import { ChapterPageProps } from '@/types/chapter';
 import { Metadata } from 'next';
-import { convertForDisplay } from '@/utils/text';
+import { convertForDisplay, extractBookContext } from '@/utils/text';
 
 const xata = getXataClient();
 
@@ -66,18 +66,18 @@ const getChapterContext = (bookContext: string | null | undefined) => {
 };
 
 const getChapterData = async (book: string, chapterNo: string) => {
+  const bc = extractBookContext(chapterNo);
   const record = await xata.db.lines
     .filter('book', book)
-    .filter('bookContext', startsWith(chapterNo))
+    .filter(bc)
     .sort('sequence', 'asc')
     .select(['bookContext'])
     .getFirst();
-
   const levels = record?.bookContext?.split('.').map(t => +t);
   const chapterLevels = levels?.slice(0, levels.length - 1).join('.');
   const records = await xata.db.lines
     .filter('book', book)
-    .filter('bookContext', startsWith(chapterLevels + '.' || '1'))
+    .filter(bc)
     .sort('sequence', 'asc')
     .select(['book', 'text', 'bookContext', 'sequence'])
     .getAll({
@@ -115,7 +115,7 @@ export async function generateMetadata(
   
   const book = decodeURI(params.book || '');
   const chapterNo = decodeURI(params.chapterNo || '');
-  const { chapter, chapterIndex } = await getChapterData(
+  const { chapterIndex } = await getChapterData(
     book,
     chapterNo
   );
