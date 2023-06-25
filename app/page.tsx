@@ -1,9 +1,9 @@
 import SearchBar from '@/components/SearchBar';
 import { getXataClient } from '@/src/xata';
 import _ from 'lodash';
-import Head from 'next/head';
 import GroupedBooks from './GroupedBooks';
 import { convertForDisplay } from '@/utils/text';
+import { Metadata } from 'next';
 
 const xata = getXataClient();
 
@@ -36,3 +36,12 @@ const getData = async () => {
   });
   return grouped;
 };
+
+
+export async function generateMetadata(): Promise<Metadata> {
+   
+  return {
+    title: `Smrthi | Collection of Indic Scriptures and Literature`,
+    description: 'Collection of Indic Scriptures and Literature'
+  }
+}

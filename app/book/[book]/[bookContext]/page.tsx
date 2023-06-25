@@ -7,9 +7,8 @@ import { lt, gt } from "@xata.io/client";
 import { Metadata } from 'next'
 import { convertForDisplay } from '@/utils/text';
 import { getVerseData, VerseProps } from './verseData';
+import { Props } from '@/types/metadata';
 const xata = getXataClient();
-
-
 
 const VersePage = async ({
   params,
@@ -28,7 +27,7 @@ const VersePage = async ({
   const chapter = _.initial(verse?.bookContext?.split('.')).join('.');
   const link = `/book/${book}/chapter/${chapter}`;
   return (
-    <div className='flex flex-col items-center shadow-md rounded p-6 m-6'>
+    <div className='flex flex-col items-center rounded p-6 m-6'>
       {verse && (
         <PageHeading
           book={book || ''}
@@ -65,20 +64,13 @@ const getPrevContext = async (book: string, sequence: number) => {
   .getFirst(): null;
 }
 
-type Props = {
-  params: { book: string, bookContext: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-}
+
  
 export async function generateMetadata(
   { params, searchParams }: Props
 ): Promise<Metadata> {
-  const book = decodeURI(params.book);
-  const bookContext = decodeURI(params.bookContext);
-  const verse = await getVerseData(
-    book,
-    bookContext
-  );
+  const book = decodeURI(params.book || '');
+  const bookContext = decodeURI(params.bookContext || '');
  
   return {
     title: `${convertForDisplay(book)} ${bookContext}`,

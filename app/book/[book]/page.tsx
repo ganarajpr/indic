@@ -3,6 +3,9 @@ import { getXataClient } from '@/src/xata';
 import _ from 'lodash';
 import Link from 'next/link';
 import PageHeading from '@/components/PageHeading';
+import { Props } from '@/types/metadata';
+import { Metadata } from 'next';
+import { convertForDisplay } from '@/utils/text';
 const xata = getXataClient();
 
 type BookPageProps = {
@@ -70,3 +73,17 @@ const getChapterData = async (book: string) => {
     })
     .sort((a, b) => a-b);
 };
+
+
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
+  
+  const book = decodeURI(params.book || '');
+  const chapterNo = decodeURI(params.chapterNo || '');
+ 
+  return {
+    title: `Chapters of ${convertForDisplay(book)}`,
+    description: 'Indic Sanskrit Literature'
+  }
+}

@@ -5,22 +5,13 @@ import VerseHeader from '@/components/VerseHeader';
 import { getXataClient } from '@/src/xata';
 import { startsWith, lt, gt } from '@xata.io/client';
 import Link from 'next/link';
+import { Props } from '@/types/metadata';
+import { ChapterPageProps } from '@/types/chapter';
+import { Metadata } from 'next';
+import { convertForDisplay } from '@/utils/text';
+
 const xata = getXataClient();
 
-type ChapterResponse = {
-  book: string;
-  bookContext: string;
-  text: string;
-};
-
-type ChapterPageProps = {
-  params: ChapterPageParams;
-};
-
-type ChapterPageParams = {
-  book: string;
-  chapterNo: string;
-};
 const ChapterPage = async ({ params }: ChapterPageProps) => {
   const book = decodeURI(params.book);
   const { chapter, chapterIndex } = await getChapterData(
@@ -116,5 +107,23 @@ const getPrevContext = async (book: string, sequence: number) => {
         .getFirst()
     : null;
 };
+
+
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
+  
+  const book = decodeURI(params.book || '');
+  const chapterNo = decodeURI(params.chapterNo || '');
+  const { chapter, chapterIndex } = await getChapterData(
+    book,
+    chapterNo
+  );
+ 
+  return {
+    title: `${convertForDisplay(book)} Chapter ${chapterIndex}`,
+    description: 'Indic Sanskrit Literature'
+  }
+}
 
 export default ChapterPage;

@@ -17,12 +17,12 @@ export default async function Image({ params }: VerseProps) {
 
   return new ImageResponse(
     (
-      <div tw='flex flex-col items-center p-6 m-6'>
-        <ImageVerse verse={verse} tw='my-4' />
+      <div className='flex flex-col items-center p-2 m-2 bg-white'>
+        <ImageVerse verse={verse} tw='my-4 text-3xl' />
         <ImagePageHeading
           book={book || ''}
           bookContext={bookContext || ''}
-          tw='w-full'
+          tw='w-full text-2xl'
         />
       </div>
     ),
