@@ -84,7 +84,7 @@ export async function generateMetadata(
     openGraph: {
       title: `${convertForDisplay(book)} ${bookContext}`,
       description: `Verses of ${convertForDisplay(book)} in Sanskrit`,
-      url: `/book/${book}/${bookContext}`,
+      url: `${process.env.NEXTAUTH_URL}/book/${book}/${bookContext}`,
       images: [`https://www.dhrta.com/api/image/${book}/${bookContext}.jpg`]
     }
   }
