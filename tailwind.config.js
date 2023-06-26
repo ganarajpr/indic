@@ -13,6 +13,9 @@ export const theme = {
       'gradient-conic':
         'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       'logo': "url('/logo.png')"
+    },
+    fontFamily: {
+      'vesper': ['"Vesper Libre"']
     }
   },
   colors: {
