@@ -79,13 +79,13 @@ export async function generateMetadata(
       card: 'summary_large_image',
       title: `${convertForDisplay(book)} ${bookContext}`,
       description: `Verses of ${convertForDisplay(book)}`,
-      images: [`/api/og?book=${book}&bookContext=${bookContext}`]
+      images: [`https://www.dhrta.com/api/image/${book}/${bookContext}.jpg`]
     },
     openGraph: {
       title: `${convertForDisplay(book)} ${bookContext}`,
       description: `Verses of ${convertForDisplay(book)} in Sanskrit`,
       url: `/book/${book}/${bookContext}`,
-      images: [`/api/og?book=${book}&bookContext=${bookContext}`]
+      images: [`https://www.dhrta.com/api/image/${book}/${bookContext}.jpg`]
     }
   }
 }
