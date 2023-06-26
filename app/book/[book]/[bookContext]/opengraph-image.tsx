@@ -22,7 +22,7 @@ export default async function Image({ params }: VerseProps) {
         <ImagePageHeading
           book={book || ''}
           bookContext={bookContext || ''}
-          tw='self-center w-full'
+          tw='flex self-center w-full'
         />
       </div>
     ),

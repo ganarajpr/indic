@@ -75,9 +75,11 @@ const getChapterData = async (book: string, chapterNo: string) => {
     .getFirst();
   const levels = record?.bookContext?.split('.').map(t => +t);
   const chapterLevels = levels?.slice(0, levels.length - 1).join('.');
+  const finalContext = extractBookContext(chapterLevels || '');
+
   const records = await xata.db.lines
     .filter('book', book)
-    .filter(bc)
+    .filter(finalContext)
     .sort('sequence', 'asc')
     .select(['book', 'text', 'bookContext', 'sequence'])
     .getAll({
