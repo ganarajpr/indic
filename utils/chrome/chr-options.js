@@ -7,6 +7,7 @@ const exePath = process.platform === 'win32'
 
 export async function getOptions(isDev) {
     let options = {};
+    await chrome.font('https://fonts.gstatic.com/s/vesperlibre/v19/bx6CNxyWnf-uxPdXDHUD_RdICUWM-KEGVJLW.woff2');
     if (isDev) {
         options = {
             args: ['--font-render-hinting=none', '--force-color-profile=srgb'],
