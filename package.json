@@ -14,7 +14,6 @@
     "@types/node": "20.2.5",
     "@types/react": "18.2.8",
     "@types/react-dom": "18.2.4",
-    "@vercel/og": "^0.5.8",
     "@xata.io/client": "^0.24.2",
     "autoprefixer": "10.4.14",
     "chrome-aws-lambda": "9.1.0",
