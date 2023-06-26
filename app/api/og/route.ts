@@ -6,8 +6,8 @@ export async function GET(request: Request) {
   const bookContext = searchParams.get('bookContext'); 
   const baseUrl = process.env.NEXTAUTH_URL;
   const url = `${baseUrl}/embed/${book}/${bookContext}`;
-  console.log(book, bookContext, url);
-  const file = await getScreenshot(url, true);
+  const isDev = process.env.DEV === 'true';
+  const file = await getScreenshot(url, isDev);
   const headers = new Headers();
   headers.set('Content-Type', `image/jpeg`);
 
