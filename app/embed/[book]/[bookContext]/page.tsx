@@ -4,7 +4,7 @@ import PageHeading from '@/components/PageHeading';
 import {
   getVerseData,
   VerseProps,
-} from '@/app/book/[book]/[bookContext]/verseData';
+} from '@/app/(withHeader)/book/[book]/[bookContext]/verseData';
 
 const VersePage = async ({ params }: VerseProps) => {
   const book = decodeURI(params.book);
