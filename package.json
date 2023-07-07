@@ -25,7 +25,6 @@
     "next-auth": "^4.22.1",
     "openai": "^3.3.0",
     "postcss": "8.4.24",
-    "preact": "^10.15.1",
     "puppeteer-core": "9.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

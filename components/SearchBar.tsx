@@ -16,7 +16,6 @@ const SearchBar = ({text = ''}) => {
   const handleSearchSubmit = (event:any) => {
     event.preventDefault();
     const book = params?.book ? params.book : '';
-
     if (searchTerm) {
       router.push(`/search?q=${searchTerm}${ book ? `&book=${book}` : '' }`);
     }
