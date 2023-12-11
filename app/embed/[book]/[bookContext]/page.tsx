@@ -26,7 +26,7 @@ const VersePage = async ({ params }: VerseProps) => {
         {verse && <Verse verse={verse} className='mt-4 font-vesper' />}
           </div>
           <div className='absolute top-0 left-0 h-full w-full flex justify-center items-center'>
-              <img src='/logo.png' width={300} className='opacity-25'></img>
+              <img src='/logo-small.png' width={300} className='opacity-25'></img>
           </div>
     </>
   );

@@ -44,8 +44,8 @@ const VersePage = async ({
         prevLink={prevVerse?.bookContext && `/book/${book}/${prevVerse.bookContext}`}
         nextLink={nextVerse?.bookContext && `/book/${book}/${nextVerse.bookContext}`} />
       {verse && <Verse verse={verse} className='mt-4' />}
-      {translation && <WordMeanings words={translation.words} className='mt-4'/>}
-      {translation && <Translations translations={translation.translations} className='mt-4'/>}
+      {translation && <WordMeanings words={translation.words} className='mt-4 mx-8'/>}
+      {translation && <Translations translations={translation.translations} className='mt-4 mx-8'/>}
     </div>
   );
 };
