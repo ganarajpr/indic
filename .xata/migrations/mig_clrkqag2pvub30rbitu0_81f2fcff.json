@@ -1,0 +1,16 @@
+{
+  "id": "mig_clrkqag2pvub30rbitu0",
+  "parentID": "mig_clrk8r4e67nlqpvbivl0",
+  "checksum": "1:81f2fcffa89a9daba72cede2b6f69d9ab20872b25e55f1fe244ce65391b7bde1",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "commentary",
+          "type": "string"
+        },
+        "table": "translations"
+      }
+    }
+  ]
+}

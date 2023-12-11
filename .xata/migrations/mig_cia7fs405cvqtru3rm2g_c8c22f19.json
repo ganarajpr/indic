@@ -1,0 +1,12 @@
+{
+  "id": "mig_cia7fs405cvqtru3rm2g",
+  "parentID": "mig_ci8cms1norldrcbneaeg",
+  "checksum": "1:c8c22f19407d477e30c0a05c8b9a875cb2cf624fa4d37dcd6f17ee78db697f95",
+  "operations": [
+    {
+      "addTable": {
+        "table": "translations"
+      }
+    }
+  ]
+}

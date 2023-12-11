@@ -1,0 +1,14 @@
+{
+  "id": "mig_clrk8r4e67nlqpvbivl0",
+  "parentID": "mig_cia7h8405cvqtru3rmt0",
+  "checksum": "1:6c2947bdb6ab582b2f95283edf73e0ef8508c8d5879c30f3d4802c9282c0c4e2",
+  "operations": [
+    {
+      "renameColumn": {
+        "newName": "line",
+        "oldName": "line_id",
+        "table": "translations"
+      }
+    }
+  ]
+}

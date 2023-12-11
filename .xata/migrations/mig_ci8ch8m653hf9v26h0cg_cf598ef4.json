@@ -1,0 +1,16 @@
+{
+  "id": "mig_ci8ch8m653hf9v26h0cg",
+  "parentID": "mig_ci2sid7guafgt4cs704g",
+  "checksum": "1:cf598ef48b022cdf5cb3646195514003ca73721b23e5f4be99f64f114056dd1b",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "L2",
+          "type": "int"
+        },
+        "table": "lines"
+      }
+    }
+  ]
+}

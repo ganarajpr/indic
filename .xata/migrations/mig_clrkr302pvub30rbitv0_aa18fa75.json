@@ -1,0 +1,19 @@
+{
+  "id": "mig_clrkr302pvub30rbitv0",
+  "parentID": "mig_clrkqpr46qautp6rghrg",
+  "checksum": "1:aa18fa75ac2c2f826ff57389e74da28910afe1edfdd7d852bf26b2e90ae8feed",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "line",
+          "type": "link",
+          "link": {
+            "table": "lines"
+          }
+        },
+        "table": "words"
+      }
+    }
+  ]
+}

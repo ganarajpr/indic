@@ -1,0 +1,16 @@
+{
+  "id": "mig_clrkrhj46qautp6rghsg",
+  "parentID": "mig_clrkr302pvub30rbitv0",
+  "checksum": "1:6411d8d508088f825e6e9fbd0cee42aa29096018a249299f73b7a77bc562d4b7",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "meanings",
+          "type": "json"
+        },
+        "table": "words"
+      }
+    }
+  ]
+}
