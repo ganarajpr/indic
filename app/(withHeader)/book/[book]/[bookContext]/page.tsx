@@ -23,6 +23,7 @@ const VersePage = async ({
     bookContext
   );
   const translation = await getTranslation(book, bookContext);
+  console.log(translation);
   const [prevVerse, nextVerse] = await Promise.all([
     getPrevContext(book, verse?.sequence || 0),
     getNextContext(book, verse?.sequence || 0)

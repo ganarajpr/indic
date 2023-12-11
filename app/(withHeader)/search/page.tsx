@@ -34,10 +34,10 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
         { 
           book ? <><span>in </span><span className='capitalize text-gray-500'>{convertForDisplay(book)} </span></> : ''
         }
-        {results?.length ? `returned the following ${results.length} results.` : 'returned NO results.'} 
+        {results?.totalCount ? `returned the following ${results.totalCount} results.` : 'returned NO results.'} 
       </div>
       <div className='divide-y-4 divide-slate-400/25'>
-        {results?.map((verse) => {
+        {results?.records.map((verse) => {
           const book = convertForDisplay(verse?.book || '');
           // @ts-ignore
           let engtext = verse.xata.highlight.engtext?.[0];
@@ -78,7 +78,6 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
 
 const getSearchData = async (query: string, book: string = '', offset: string = '0') => {
   const myFilter = book !== '' ? { book } : undefined;
-  console.log('myFilter', myFilter);
   const records = await xata.db.lines.search(query, {
     fuzziness: 2,
     filter: myFilter,

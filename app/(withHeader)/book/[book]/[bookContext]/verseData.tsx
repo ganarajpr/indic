@@ -17,7 +17,7 @@ export const getVerseData = async (book: string, bookContext: string) => {
 };
 
 const getTranslationAndWords = async (verseId: string) => {
-  const [translations, wordMeanings] = await Promise.all([
+  const [translations, words] = await Promise.all([
     xata.db.translations
       .select(['translation'])
       .filter({ line: verseId })
@@ -27,10 +27,8 @@ const getTranslationAndWords = async (verseId: string) => {
       .filter({ line: verseId })
       .getFirst()
   ]);
-
-  return { translations, words: {
-    meanings: typeof wordMeanings?.meanings === 'string' ? JSON.parse(wordMeanings.meanings) : []
-  } };
+  console.log(translations, words);
+  return { translations, words };
 };
 
 export const getTranslation = async (book: string, bookContext: string) => {
