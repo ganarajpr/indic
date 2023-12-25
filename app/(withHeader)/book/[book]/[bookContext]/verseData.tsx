@@ -31,6 +31,20 @@ const getTranslationAndWords = async (verseId: string) => {
   return { translations, words };
 };
 
+
+export const getTranslationAndWordsByBookContext = async (book: string, bookContext: string) => {
+  const [translations, words] = await Promise.all([
+    xata.db.translations
+      .select(['translation', 'commentary'])
+      .filter({ 'line.book': book, 'line.bookContext': bookContext })
+      .getMany(),
+    xata.db.words
+      .select(['meanings'])
+      .filter({ 'line.book': book, 'line.bookContext': bookContext })
+      .getFirst()
+  ]);
+  return { translations, words };
+};
 export const getTranslation = async (book: string, bookContext: string) => {
   const sequence = extractSequence(bookContext);
   const record = await xata.db.translations

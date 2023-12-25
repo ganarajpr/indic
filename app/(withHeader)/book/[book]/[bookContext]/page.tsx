@@ -6,10 +6,11 @@ import NavigationButtons from '@/components/NavigationButtons';
 import { lt, gt } from "@xata.io/client";
 import { Metadata } from 'next'
 import { convertForDisplay } from '@/utils/text';
-import { getVerseData, VerseProps, getTranslation } from './verseData';
+import { getVerseData, VerseProps, getTranslationAndWordsByBookContext } from './verseData';
 import { Props } from '@/types/metadata';
 import WordMeanings from '@/components/WordMeanings';
 import Translations from '@/components/Translations';
+import Commentary from '@/components/Commentary';
 const xata = getXataClient();
 
 const VersePage = async ({
@@ -22,8 +23,7 @@ const VersePage = async ({
     book,
     bookContext
   );
-  const translation = await getTranslation(book, bookContext);
-  console.log(translation);
+  const translation = await getTranslationAndWordsByBookContext(book, bookContext);
   const [prevVerse, nextVerse] = await Promise.all([
     getPrevContext(book, verse?.sequence || 0),
     getNextContext(book, verse?.sequence || 0)
@@ -46,6 +46,7 @@ const VersePage = async ({
       {verse && <Verse verse={verse} className='mt-4' />}
       {translation && <WordMeanings words={translation.words} className='mt-4 mx-8'/>}
       {translation && <Translations translations={translation.translations} className='mt-4 mx-8'/>}
+      {translation && <Commentary translations={translation.translations} className='mt-4 mx-8'/>}
     </div>
   );
 };

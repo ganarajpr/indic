@@ -1,0 +1,18 @@
+{
+  "id": "mig_cm4cfu59pjg7vrc06t80",
+  "parentID": "mig_clrkrhj46qautp6rghsg",
+  "checksum": "1:f8954cacc428fb873d855f63a368247bc0d5fd615cdddb6333957e285ebac563",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "has_translation",
+          "type": "bool",
+          "notNull": true,
+          "defaultValue": "false"
+        },
+        "table": "lines"
+      }
+    }
+  ]
+}
