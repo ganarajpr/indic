@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Commentary = ({ translations, className = '' }) => {
+const Commentary = ({ translations = [], className = '' }) => {
     return (
       <div className={`text-gray-500 text-2xl ${className}`}>
         {translations.map((line: { commentary: string ; }, index: number) => (

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Translations = ({ translations, className = '' }) => {
+const Translations = ({ translations = [], className = '' }) => {
     return (
       <div className={`text-gray-500 text-2xl ${className}`}>
         {translations.map((line: { translation: string ; }, index: number) => (
