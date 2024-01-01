@@ -16,9 +16,9 @@ const Header = () => {
           <div className='mx-auto'>
             <Image
               className='h-8 w-auto'
-              width={50}
-              height={30}
-              src='/smrthi-text.png'
+              width={60}
+              height={60}
+              src='/logo-stroke.png'
               alt='Smrthi'
             />
           </div>

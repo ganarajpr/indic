@@ -31,7 +31,15 @@ const VersePage = async ({
   const chapter = _.initial(verse?.bookContext?.split('.')).join('.');
   const link = `/book/${book}/chapter/${chapter}`;
   return (
-    <div className='flex flex-col items-center rounded p-6 m-6'>
+    <div className='flex flex-col items-center rounded p-6 m-6 
+      before:bg-logo
+      before:opacity-10
+      before:absolute
+      before:top-0
+      before:left-0
+      before:w-full
+      before:h-full
+      before:bg-no-repeat before:bg-center'>
       {verse && (
         <PageHeading
           book={book || ''}
@@ -46,7 +54,7 @@ const VersePage = async ({
       {verse && <Verse verse={verse} className='mt-4' />}
       {translation && <WordMeanings words={translation.words} className='mt-4 mx-8'/>}
       {translation && <Translations translations={translation.translations} className='mt-4 mx-8'/>}
-      {translation && <Commentary translations={translation.translations} className='mt-4 mx-8'/>}
+      {translation && <Commentary translations={translation.translations} className='mt-4 mb-8 mx-8'/>}
     </div>
   );
 };
