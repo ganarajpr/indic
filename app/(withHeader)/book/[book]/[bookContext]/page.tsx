@@ -39,6 +39,7 @@ const VersePage = async ({
       before:left-0
       before:w-full
       before:h-full
+      before:-z-50
       before:bg-no-repeat before:bg-center'>
       {verse && (
         <PageHeading
